@@ -10,4 +10,4 @@ run:
     port: 8080
   env:
     - name: DDB_AWS_REGION
-      value: "eu-west-1"
+      value: "us-east-1"

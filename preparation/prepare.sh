@@ -2,7 +2,8 @@
 
 export TABLE_NAME="votingapp-restaurants"
 export IAM_ROLE="votingapp-role"
-export ACCOUNT_ID=$(aws sts get-caller-identity | jq -r .Account) 
+export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query 'Account') 
+export AWS_REGION=$(aws configure get region)
 if [ -z ${AWS_REGION} ]; then echo "you need to export the AWS_REGION variable"; exit; fi
 
 aws dynamodb create-table \

@@ -1,13 +1,13 @@
 version: 1.0
-runtime: python3 
+runtime: python3
 build:
   commands:
-    build:        
+    build:
       - pip install -r requirements.txt
 run:
-  command: python app.py  
-  network: 
+  command: python app.py
+  network:
     port: 8080
   env:
     - name: DDB_AWS_REGION
-      value: "us-east-1" 
+      value: "us-east-1"

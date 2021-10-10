@@ -2,6 +2,10 @@ variable "region" {
   default = "ap-southeast-1"
 }
 
+variable "environment" {
+  type = string
+}
+
 variable "github_connection_arn" {
   type = string
 }

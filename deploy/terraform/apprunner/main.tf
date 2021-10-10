@@ -1,6 +1,5 @@
 terraform {
   backend "s3" {
-    key = "terraform/environment/votingapp/apprunner.tfstate"
   }
 
   required_providers {
@@ -17,16 +16,17 @@ provider "aws" {
 
 module "dynamodb" {
   source = "./dynamodb"
-  table_suffix = "master"
+  table_suffix = var.environment
 }
 
 module "runtime_iam_role" {
   source = "./iam"
   dynamodb_table_arn = module.dynamodb.restaurant_table_arn
+  role_suffix = var.environment
 }
 
 resource "aws_apprunner_service" "code_example" {
-  service_name = "apprunner_code_example"
+  service_name = "apprunner_code_example_${var.environment}"
 
   source_configuration {
     authentication_configuration {

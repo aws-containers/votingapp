@@ -16,9 +16,11 @@ function apply() {
   -migrate-state \
   -backend-config="region=${aws_region}" \
   -backend-config="bucket=${tf_state_s3_bucket}" \
+  -backend-config="key=terraform/apps/votingapp/${environment}/apprunner.tfstate" \
   && \
   terraform -chdir="${tf_working_dir}" apply -auto-approve \
   -var="region=${aws_region}" \
+  -var="environment=${environment}" \
   -var="github_connection_arn=${github_connection_arn}" \
   -var="github_code_repo_url=${github_code_repo_url}"
 }
@@ -28,9 +30,11 @@ function destroy() {
   -migrate-state \
   -backend-config="region=${aws_region}" \
   -backend-config="bucket=${tf_state_s3_bucket}" \
+  -backend-config="key=terraform/apps/votingapp/${environment}/apprunner.tfstate" \
   && \
   terraform -chdir="${tf_working_dir}" destroy -auto-approve \
   -var="region=${aws_region}" \
+  -var="environment=${environment}" \
   -var="github_connection_arn=${github_connection_arn}" \
   -var="github_code_repo_url=${github_code_repo_url}"
 }

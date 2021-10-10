@@ -1,3 +1,8 @@
+output "ecr_repo_url" {
+  description = "The URL of the ECR repository"
+  value       = aws_ecr_repository.repo.repository_url
+}
+
 output "iam_user_name" {
   description = "The GitHub user's name"
   value       = module.iam.iam_user_name

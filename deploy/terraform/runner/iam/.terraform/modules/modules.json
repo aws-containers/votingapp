@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"iam_user","Source":"terraform-aws-modules/iam/aws//modules/iam-user","Version":"3.16.0","Dir":".terraform/modules/iam_user/modules/iam-user"},{"Key":"","Source":"","Dir":"."}]}

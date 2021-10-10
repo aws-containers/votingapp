@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - uses: ./.github/actions/apprunner
         with:
-          operation: apply
+          operation: destroy
           ecr-repository-name: ${{ secrets.ECR_REPO_NAME }}
           github-connection-arn: ${{ secrets.CONNECTION_ARN }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}

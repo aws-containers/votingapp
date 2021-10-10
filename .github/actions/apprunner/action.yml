@@ -1,6 +1,9 @@
 name: Call apprunner.sh
 description: Call the apprunner.sh with proper arguments
 inputs:
+  operation:
+    description: The operation params to the script
+    required: true
   aws-access-key-id:
     description: AWS access key id
     required: true

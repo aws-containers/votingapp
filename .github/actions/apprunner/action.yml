@@ -35,7 +35,7 @@ runs:
         OPERATION: ${{ inputs.operation }}
       run: |
         echo "aws_region=$AWS_REGION \
-        environment=$(basename refs/heads/feature-branch-1) \
+        environment=$(basename $GITHUB_REF) \
         github_connection_arn=$GITHUB_CONNECTION_ARN \
         github_code_repo_url=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY \
         ecr_repo_name=$ECR_REPOSITORY" \

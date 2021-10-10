@@ -1,0 +1,41 @@
+name: Call apprunner.sh
+description: Call the apprunner.sh with proper arguments
+inputs:
+  aws-access-key-id:
+    description: AWS access key id
+    required: true
+  aws-secret-access-key:
+    description: AWS secret access key
+    required: true
+  aws-region:
+    description: AWS region
+    required: false
+    default: ap-northeast-1
+  github-connection-arn:
+    description: GitHub connection ARN from the AppRunner console
+    required: false
+    default: ""
+  ecr-repository-name:
+    description: The name of the private ECR repository
+    required: false
+    default: ""
+runs:
+  using: composite
+  steps:
+    - env:
+        ECR_REPOSITORY: ${{ inputs.ecr-repository-name }}
+        GITHUB_CONNECTION_ARN: ${{ inputs.github-connection-arn }}
+        AWS_REGION: ${{ inputs.aws-region }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.aws-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
+        AWS_DEFAULT_REGION: ${{ inputs.aws-region }}
+      run: |
+        echo "aws_region=$AWS_REGION \
+        environment=$(basename refs/heads/feature-branch-1) \
+        github_connection_arn=$GITHUB_CONNECTION_ARN \
+        github_code_repo_url=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY \
+        ecr_repo_name=$ECR_REPOSITORY" \
+        > .apprunner.env
+        ./apprunner.sh apply
+      shell: bash
+      working-directory: ./deploy/scripts

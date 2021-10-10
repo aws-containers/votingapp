@@ -5,27 +5,14 @@ on:
 
 jobs:
   build:
-    name: Apply Terraform plan
     runs-on: ubuntu-latest
     environment: priviledged
     steps:
       - name: Check Out Repo
         uses: actions/checkout@v2
-      - name: Prepare environment file
-        env:
-          REPOSITORY_URL: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ secrets.ECR_REPO_NAME }}
-          GITHUB_CONNECTION_ARN: ${{ secrets.CONNECTION_ARN }}
-          AWS_REGION: ap-northeast-1
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ap-northeast-1
-        run: |
-          echo "aws_region=$AWS_REGION \
-          environment=$(basename refs/heads/feature-branch-1) \
-          github_connection_arn=$GITHUB_CONNECTION_ARN \
-          github_code_repo_url=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY \
-          ecr_repo_name=$ECR_REPOSITORY" \
-          > .apprunner.env
-          ./apprunner.sh apply
-        working-directory: ./deploy/scripts
+      - uses: ./.github/actions/apprunner
+        with:
+          ecr-repository-name: ${{ secrets.ECR_REPO_NAME }}
+          github-connection-arn: ${{ secrets.CONNECTION_ARN }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

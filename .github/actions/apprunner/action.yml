@@ -32,6 +32,7 @@ runs:
         AWS_ACCESS_KEY_ID: ${{ inputs.aws-access-key-id }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
         AWS_DEFAULT_REGION: ${{ inputs.aws-region }}
+        OPERATION: ${{ inputs.operation }}
       run: |
         echo "aws_region=$AWS_REGION \
         environment=$(basename refs/heads/feature-branch-1) \
@@ -39,6 +40,6 @@ runs:
         github_code_repo_url=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY \
         ecr_repo_name=$ECR_REPOSITORY" \
         > .apprunner.env
-        ./apprunner.sh apply
+        ./apprunner.sh $OPERATION
       shell: bash
       working-directory: ./deploy/scripts

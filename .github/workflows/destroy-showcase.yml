@@ -1,4 +1,4 @@
-name: Build showcase environment
+name: Destroy showcase environment
 
 on:
   workflow_dispatch:

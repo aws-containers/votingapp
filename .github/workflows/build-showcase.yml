@@ -17,6 +17,9 @@ jobs:
           ECR_REPOSITORY: ${{ secrets.ECR_REPO_NAME }}
           GITHUB_CONNECTION_ARN: ${{ secrets.CONNECTION_ARN }}
           AWS_REGION: ap-northeast-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-northeast-1
         run: |
           echo "aws_region=$AWS_REGION \
           environment=$(basename refs/heads/feature-branch-1) \

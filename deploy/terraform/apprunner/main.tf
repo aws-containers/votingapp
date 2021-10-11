@@ -91,14 +91,6 @@ resource "aws_iam_role_policy_attachment" "apprunner_role" {
   policy_arn = data.aws_iam_policy.AWSAppRunnerServicePolicyForECRAccess.arn
 }
 
-resource "aws_apprunner_auto_scaling_configuration_version" "this" {
-  auto_scaling_configuration_name = "apprunner_auto_scaling_${var.environment}"
-
-  max_concurrency = 2
-  max_size        = 2
-  min_size        = 1
-}
-
 resource "aws_apprunner_service" "private_ecr_example" {
   count = var.should_use_ecr ? 1 : 0
   service_name = "apprunner_ecr_${var.environment}"

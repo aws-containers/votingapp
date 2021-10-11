@@ -1,0 +1,21 @@
+name: Destroy staging environment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: priviledged
+    steps:
+      - name: Check Out Repo
+        uses: actions/checkout@v2
+      - uses: ./.github/actions/apprunner
+        with:
+          operation: destroy
+          ecr-repository-name: ${{ secrets.ECR_REPO_NAME }}
+          github-connection-arn: ${{ secrets.CONNECTION_ARN }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          ecr-repository-url: ${{ secrets.ECR_REPOSITORY_URL }}
+          should-use-ecr: "true"

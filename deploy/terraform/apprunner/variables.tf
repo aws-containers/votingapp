@@ -13,3 +13,12 @@ variable "github_connection_arn" {
 variable "github_code_repo_url" {
   type = string
 }
+
+variable "ecr_repo_url" {
+  type = string
+}
+
+variable "should_use_ecr" {
+  type = bool
+  default = false
+}

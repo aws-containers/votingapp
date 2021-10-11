@@ -21,6 +21,8 @@ function apply() {
   terraform -chdir="${tf_working_dir}" apply -auto-approve \
   -var="region=${aws_region}" \
   -var="environment=${environment}" \
+  -var="ecr_repo_url=${ecr_repo_url}" \
+  -var="should_use_ecr=${should_use_ecr}" \
   -var="github_connection_arn=${github_connection_arn}" \
   -var="github_code_repo_url=${github_code_repo_url}"
 }
@@ -35,6 +37,8 @@ function destroy() {
   terraform -chdir="${tf_working_dir}" destroy -auto-approve \
   -var="region=${aws_region}" \
   -var="environment=${environment}" \
+  -var="ecr_repo_url=${ecr_repo_url}" \
+  -var="should_use_ecr=${should_use_ecr}" \
   -var="github_connection_arn=${github_connection_arn}" \
   -var="github_code_repo_url=${github_code_repo_url}"
 }

@@ -34,19 +34,23 @@ runs:
   using: composite
   steps:
     - env:
-        ECR_REPOSITORY: ${{ inputs.ecr-repository-name }}
+        ECR_REPOSITORY_NAME: ${{ inputs.ecr-repository-name }}
         GITHUB_CONNECTION_ARN: ${{ inputs.github-connection-arn }}
         AWS_REGION: ${{ inputs.aws-region }}
         AWS_ACCESS_KEY_ID: ${{ inputs.aws-access-key-id }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
         AWS_DEFAULT_REGION: ${{ inputs.aws-region }}
         OPERATION: ${{ inputs.operation }}
+        ECR_REPOSITORY_URL: ${{ inputs.ecr-repository-url }}
+        SHOULD_USE_ECR: ${{ inputs.should-use-ecr }}
       run: |
         echo "aws_region=$AWS_REGION \
         environment=$(basename $GITHUB_REF) \
         github_connection_arn=$GITHUB_CONNECTION_ARN \
         github_code_repo_url=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY \
-        ecr_repo_name=$ECR_REPOSITORY" \
+        ecr_repo_name=$ECR_REPOSITORY_NAME" \
+        ecr_repo_url=$ECR_REPOSITORY_URL \
+        should_use_ecr=$SHOULD_USE_ECR \
         > .apprunner.env
         ./apprunner.sh $OPERATION
       shell: bash

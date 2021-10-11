@@ -14,6 +14,10 @@ variable "github_code_repo_url" {
   type = string
 }
 
+variable "github_code_branch" {
+  type = string
+}
+
 variable "ecr_repo_url" {
   type = string
 }

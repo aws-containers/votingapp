@@ -50,7 +50,7 @@ resource "aws_apprunner_service" "code_example" {
       repository_url = var.github_code_repo_url
       source_code_version {
         type  = "BRANCH"
-        value = "master"
+        value = var.github_code_branch
       }
     }
   }

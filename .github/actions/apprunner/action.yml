@@ -50,6 +50,7 @@ runs:
         github_code_repo_url=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY \
         ecr_repo_name=$ECR_REPOSITORY_NAME" \
         ecr_repo_url=$ECR_REPOSITORY_URL \
+        github_code_branch=$GITHUB_REF \
         should_use_ecr=$SHOULD_USE_ECR \
         > .apprunner.env
         ./apprunner.sh $OPERATION

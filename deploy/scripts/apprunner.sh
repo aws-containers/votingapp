@@ -24,6 +24,7 @@ function apply() {
   -var="ecr_repo_url=${ecr_repo_url}" \
   -var="should_use_ecr=${should_use_ecr}" \
   -var="github_connection_arn=${github_connection_arn}" \
+  -var="github_code_branch=${github_code_branch}" \
   -var="github_code_repo_url=${github_code_repo_url}"
 }
 
@@ -40,6 +41,7 @@ function destroy() {
   -var="ecr_repo_url=${ecr_repo_url}" \
   -var="should_use_ecr=${should_use_ecr}" \
   -var="github_connection_arn=${github_connection_arn}" \
+  -var="github_code_branch=${github_code_branch}" \
   -var="github_code_repo_url=${github_code_repo_url}"
 }
 

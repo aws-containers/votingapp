@@ -8,6 +8,7 @@ import boto3
 from multiprocessing import Pool
 from multiprocessing import cpu_count
 
+version = "1.0.0"
 app = Flask(__name__)
 
 cors = CORS(app, resources={r"/api/*": {"Access-Control-Allow-Origin": "*"}})
@@ -53,7 +54,7 @@ def updatevote(restaurant, votes):
 
 @app.route('/')
 def home():
-    return "<h1>Welcome to the Voting App</h1><p><b>To vote, you can call the following APIs:</b></p><p>/api/outback</p><p>/api/bucadibeppo</p><p>/api/ihop</p><p>/api/chipotle</p><b>To query the votes, you can call the following APIs:</b><p>/api/getvotes</p><p>/api/getheavyvotes (this generates artificial CPU/memory load)</p>"
+    return "<h1>Welcome to the Voting App " + version + "</h1><p><b>To vote, you can call the following APIs:</b></p><p>/api/outback</p><p>/api/bucadibeppo</p><p>/api/ihop</p><p>/api/chipotle</p><b>To query the votes, you can call the following APIs:</b><p>/api/getvotes</p><p>/api/getheavyvotes (this generates artificial CPU/memory load)</p>"
 
 @app.route("/api/outback")
 def outback():

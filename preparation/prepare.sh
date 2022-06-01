@@ -42,3 +42,4 @@ sed -e "s@ACCOUNT_ID@$ACCOUNT_ID@g" -e "s@AWS_REGION@$AWS_REGION@g" -e "s@TABLE_
 aws iam create-policy --policy-name votingapp-ddb-policy --policy-document file://./filled-votingapp-ddb-policy.json
 rm  filled-votingapp-ddb-policy.json
 aws iam attach-role-policy --role-name $IAM_ROLE --policy-arn arn:aws:iam::$ACCOUNT_ID:policy/votingapp-ddb-policy
+aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess --role-name $IAM_ROLE

@@ -39,7 +39,7 @@ First, please check the [preparation](/preparation) folder in this repository to
 
 The last step is important because it is what grant this App Runner service access to the DynamoDB table. 
 
-Please note that the `apprunner.yaml` configuration file set the `DDB_AWS_REGION` variable to `us-east-1`. If your DynamoDB table is in another region (and/or if you opted to create a table with a different name) please change/add the variables values accordingly in the file. 
+Please note that the `apprunner.yaml` configuration file set the `DDB_AWS_REGION` variable to `us-west-2`. If your DynamoDB table is in another region (and/or if you opted to create a table with a different name) please change/add the variables values accordingly in the file. 
 
 
 #### Variables

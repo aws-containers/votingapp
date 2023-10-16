@@ -1,4 +1,4 @@
-FROM public.ecr.aws/bitnami/python:3.6-prod
+FROM public.ecr.aws/bitnami/python:3.8-prod
 
 COPY . /app
 

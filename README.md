@@ -42,6 +42,17 @@ The last step is important because it is what grant this App Runner service acce
 
 Please note that the `apprunner.yaml` configuration file set the `DDB_AWS_REGION` variable to `us-west-2`. If your DynamoDB table is in another region (and/or if you opted to create a table with a different name) please change/add the variables values accordingly in the file. 
 
+#### AWS App Runner CLI deployment
+
+Similar to the console deployment, please check the [preparation](/preparation) folder in this repository first to create the DynamoDB table and the various roles and policies required. Also, if you choose to deploy from source, clone this repo in your GH account. Be sure you have setup the AWS CLI and proper credentials. 
+
+To deploy this application using the AWS CLI, this repo is provided with a `apprunner_cli_input.json` file. It includes all the configurations you'd otherwise need to manually enter into the console. 
+
+Remember to substitute the `CONNECTION_ARN`, `GH_USER`, `ACCOUNT_ID` and `IAM_ROLE` placeholders in the `apprunner_cli_input.json` file. Once you have done it, you can just run this command: 
+
+```
+aws apprunner create-service --cli-input-json file://apprunner_cli_input.json
+```
 
 #### Variables
 
@@ -49,8 +60,7 @@ Please note that the `apprunner.yaml` configuration file set the `DDB_AWS_REGION
 - `DDB_TABLE_NAME` this variable is optional and contains the DynamoDB table name (default: `votingapp-restaurants`)
 - `MEMSTRESSFACTOR` and `CPUSTRESSFACTOR` are optional and governs the behaviour of the artificial load (experimental)
 - `OTEL_PYTHON_ID_GENERATOR` and `OTEL_PROPAGATORS` are required to enable the X-Ray integration
-- `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` and `OTEL_RESOURCE_ATTRIBUTES` are optional and relates to the X-Ray integration 
-- 
+- `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` and `OTEL_RESOURCE_ATTRIBUTES` are optional and relates to the X-Ray integration
 
 #### Deploying the application with other services and platforms  
 

@@ -8,6 +8,7 @@ The application puts and stores "votes" in an Amazon DynamoDB table. You can vot
 /api/bucadibeppo
 /api/ihop
 /api/chipotle
+/api/panera
 ```
 In addition to vote, you can query the status by CURLing (or similar) the `/api/getvotes` API. Note that there is an ***experimental*** feature in the code to artificially consume more memory/CPU. This is available by hitting the `/api/getheavyvotes` API. The amount of artificial load is determined by two variables (`MEMSTRESSFACTOR` and `CPUSTRESSFACTOR` which default to `1`). You can tweak the amount of load by, for example, setting them to `0.1` if you want less overhead or `10` if you want more overhead. 
 

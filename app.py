@@ -79,6 +79,14 @@ def ihop():
     string_new_votes = updatevote("ihop", votes)
     return string_new_votes 
 
+@app.route("/api/panera")
+def panera():
+    string_votes = readvote("panera")
+    votes = int(string_votes)
+    votes += 1
+    string_new_votes = updatevote("panera", votes)
+    return string_new_votes 
+
 @app.route("/api/chipotle")
 def chipotle():
     string_votes = readvote("chipotle")
@@ -93,7 +101,8 @@ def getvotes():
     string_ihop = readvote("ihop")
     string_bucadibeppo = readvote("bucadibeppo")
     string_chipotle = readvote("chipotle")
-    string_votes = '[{"name": "outback", "value": ' + string_outback + '},' + '{"name": "bucadibeppo", "value": ' + string_bucadibeppo + '},' + '{"name": "ihop", "value": '  + string_ihop + '}, ' + '{"name": "chipotle", "value": '  + string_chipotle + '}]'
+    string_panera = readvote("panera")
+    string_votes = '[{"name": "outback", "value": ' + string_outback + '},' + '{"name": "bucadibeppo", "value": ' + string_bucadibeppo + '},' + '{"name": "ihop", "value": '  + string_ihop + '}, ' + '{"name": "chipotle", "value": '  + string_chipotle + '}, ' + '{"name": "panera", "value": '  + string_panera + '}]'
     return string_votes
 
 @app.route("/api/getheavyvotes")
@@ -102,7 +111,8 @@ def getheavyvotes():
     string_ihop = readvote("ihop")
     string_bucadibeppo = readvote("bucadibeppo")
     string_chipotle = readvote("chipotle")
-    string_votes = '[{"name": "outback", "value": ' + string_outback + '},' + '{"name": "bucadibeppo", "value": ' + string_bucadibeppo + '},' + '{"name": "ihop", "value": '  + string_ihop + '}, ' + '{"name": "chipotle", "value": '  + string_chipotle + '}]'
+    string_panera = readvote("panera")
+    string_votes = '[{"name": "outback", "value": ' + string_outback + '},' + '{"name": "bucadibeppo", "value": ' + string_bucadibeppo + '},' + '{"name": "ihop", "value": '  + string_ihop + '}, ' + '{"name": "chipotle", "value": '  + string_chipotle + '}, ' + '{"name": "panera", "value": '  + string_panera + '}]'
     print("You invoked the getheavyvotes API. I am eating 100MB * " + str(memstressfactor) + " at every votes request")
     memeater[randrange(10000)] = bytearray(1024 * 1024 * 100 * memstressfactor, encoding='utf8') # eats 100MB * memstressfactor
     print("You invoked the getheavyvotes API. I am eating some cpu * " + str(cpustressfactor) + " at every votes request")
